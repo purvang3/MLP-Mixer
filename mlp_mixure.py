@@ -69,19 +69,3 @@ class Model(nn.Module):
         x = x.mean(dim=1) if self.pool == 'mean' else x[:, 0]
         x = self.mlp_head(x)
         return x
-
-
-if __name__ == "__main__":
-    mlp_mixure = Model(
-        image_size=256,
-        patch_size=32,
-        num_classes=1000,
-        dim=1024,
-        depth=6,
-        mlp_dim=2048,
-        dropout=0.1
-    )
-
-    img = torch.randn(1, 3, 256, 256)
-
-    preds = mlp_mixure(img)
